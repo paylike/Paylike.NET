@@ -1,4 +1,5 @@
-﻿using Paylike.NET.RequestModels.Apps;
+﻿using Paylike.NET.Entities;
+using Paylike.NET.RequestModels.Apps;
 using Paylike.NET.ResponseModels;
 using Paylike.NET.ResponseModels.Apps;
 using System;
@@ -11,7 +12,7 @@ namespace Paylike.NET.Interfaces
 {
     public interface IPaylikeAppService
     {
-        ApiResponse<CreateAppResponse> CreateApp(CreateAppRequest request);
+        ApiResponse<App> CreateApp(CreateAppRequest request);
         ApiResponse<GetCurrentAppResponse> GetCurrentApp();
         ApiResponse<object> AddAppToMerchant(AddAppToMerchantRequest request);
         void SetApiKey(string privateApiKey);

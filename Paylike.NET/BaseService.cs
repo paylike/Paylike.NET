@@ -63,6 +63,7 @@ namespace Paylike.NET
                 string jsonResponse = httpResponse.Content.ReadAsStringAsync().Result;
                 if (httpResponse.IsSuccessStatusCode)
                 {
+                    jsonResponse = ProcessApiResponse(jsonResponse, request.Name);
                     apiResponse.Content = JsonConvert.DeserializeObject<ResponseType>(jsonResponse);
                 }
                 else
@@ -72,6 +73,11 @@ namespace Paylike.NET
             }
 
             return apiResponse;
+        }
+
+        protected virtual string ProcessApiResponse(string json, string requestName)
+        {
+            return json;
         }
 
         protected string GetAuthorizationHeaderValue(string privateApiKey)

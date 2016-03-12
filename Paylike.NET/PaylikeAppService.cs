@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Paylike.NET.RequestModels.Apps;
 using Paylike.NET.ResponseModels;
 using Paylike.NET.ResponseModels.Apps;
+using Newtonsoft.Json.Linq;
+using Paylike.NET.Entities;
 
 namespace Paylike.NET
 {
@@ -18,9 +20,9 @@ namespace Paylike.NET
 
         }
 
-        public ApiResponse<CreateAppResponse> CreateApp(CreateAppRequest request)
+        public ApiResponse<App> CreateApp(CreateAppRequest request)
         {
-            return SendApiRequest<CreateAppRequest, CreateAppResponse>(request);
+            return SendApiRequest<CreateAppRequest, App>(request);
         }
 
         public ApiResponse<GetCurrentAppResponse> GetCurrentApp()
@@ -31,6 +33,21 @@ namespace Paylike.NET
         public ApiResponse<object> AddAppToMerchant(AddAppToMerchantRequest request)
         {
             return SendApiRequest<AddAppToMerchantRequest, object>(request);
+        }
+
+        protected override string ProcessApiResponse(string json, string requestName)
+        {
+            string processedJson = json;
+            switch (requestName)
+            {
+                case "CreateApp":
+                    {
+                        processedJson = JObject.Parse(json).SelectToken("app").ToString();
+                        break;
+                    }
+            }
+
+            return processedJson;
         }
 
         public void SetApiKey(string privateApiKey)

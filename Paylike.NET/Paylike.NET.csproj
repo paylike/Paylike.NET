@@ -45,21 +45,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Constants\Country.cs" />
+    <Compile Include="Constants\Currency.cs" />
     <Compile Include="Entities\App.cs" />
+    <Compile Include="Entities\Bank.cs" />
+    <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\Merchant.cs" />
+    <Compile Include="Interfaces\IPaylikeMerchantService.cs" />
     <Compile Include="Interfaces\IPaylikeAppService.cs" />
     <Compile Include="PaylikeAppService.cs" />
+    <Compile Include="PaylikeMerchantService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestModels\Apps\AddAppToMerchantRequest.cs" />
     <Compile Include="RequestModels\Apps\CreateAppRequest.cs" />
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
+    <Compile Include="RequestModels\Merchants\CreateMerchantRequest.cs" />
+    <Compile Include="RequestModels\Merchants\GetMerchantRequest.cs" />
+    <Compile Include="RequestModels\Merchants\UpdateMerchantRequest.cs" />
     <Compile Include="RequestModels\RequestBase.cs" />
     <Compile Include="ResponseModels\ApiResponse.cs" />
-    <Compile Include="ResponseModels\Apps\CreateAppResponse.cs" />
     <Compile Include="ResponseModels\Apps\FetchCurrentAppResponse.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

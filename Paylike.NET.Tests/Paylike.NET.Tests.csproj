@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AppServiceTests.cs" />
+    <Compile Include="MerchantServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

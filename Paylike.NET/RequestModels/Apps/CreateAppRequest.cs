@@ -12,6 +12,7 @@ namespace Paylike.NET.RequestModels.Apps
         public CreateAppRequest()
         {
             base.Uri = "/apps";
+            base.Name = "CreateApp";
             base.HttpMethod = System.Net.WebRequestMethods.Http.Post;
         }
 
