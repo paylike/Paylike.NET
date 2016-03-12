@@ -56,9 +56,10 @@
     <Compile Include="PaylikeAppService.cs" />
     <Compile Include="PaylikeMerchantService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestModels\Apps\AddAppToMerchantRequest.cs" />
+    <Compile Include="RequestModels\Merchants\AddAppToMerchantRequest.cs" />
     <Compile Include="RequestModels\Apps\CreateAppRequest.cs" />
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
+    <Compile Include="RequestModels\Merchants\RevokeAppFromMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\CreateMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\UpdateMerchantRequest.cs" />

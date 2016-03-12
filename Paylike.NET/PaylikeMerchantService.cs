@@ -18,6 +18,16 @@ namespace Paylike.NET
 
         }
 
+        public ApiResponse<object> AddAppToMerchant(AddAppToMerchantRequest request)
+        {
+            return SendApiRequest<AddAppToMerchantRequest, object>(request);
+        }
+
+        public ApiResponse<object> RevokeAppFromMerchant(RevokeAppFromMerchantRequest request)
+        {
+            return SendApiRequest<RevokeAppFromMerchantRequest, object>(request);
+        }
+
         public ApiResponse<Merchant> CreateMerchant(CreateMerchantRequest request)
         {
             return SendApiRequest<CreateMerchantRequest, Merchant>(request);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Paylike.NET.RequestModels.Apps
+namespace Paylike.NET.RequestModels.Merchants
 {
     public class AddAppToMerchantRequest : RequestBase
     {

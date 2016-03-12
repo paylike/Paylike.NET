@@ -30,11 +30,6 @@ namespace Paylike.NET
             return SendApiRequest<GetCurrentAppRequest, GetCurrentAppResponse>(new GetCurrentAppRequest());
         }
 
-        public ApiResponse<object> AddAppToMerchant(AddAppToMerchantRequest request)
-        {
-            return SendApiRequest<AddAppToMerchantRequest, object>(request);
-        }
-
         protected override string ProcessApiResponse(string json, string requestName)
         {
             string processedJson = json;

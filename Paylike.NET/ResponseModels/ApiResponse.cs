@@ -15,10 +15,12 @@ namespace Paylike.NET.ResponseModels
 
         public bool IsError
         {
-            get { return Error != null; }
+            get { return ErrorContent != null; }
         }
 
-        public object Error { get; internal set; }
+        public int ResponseCode { get; set; }
+
+        public string ErrorContent { get; internal set; }
 
         public T Content { get; internal set; }
     }

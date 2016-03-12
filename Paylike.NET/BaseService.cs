@@ -56,6 +56,11 @@ namespace Paylike.NET
                         httpResponse = _apiClient.PutAsync(request.Uri, contentPut).Result;
                         break;
                     }
+                case "DELETE":
+                    {
+                        httpResponse = _apiClient.DeleteAsync(request.Uri).Result;
+                        break;
+                    }
             }
 
             if (httpResponse != null)
@@ -68,8 +73,10 @@ namespace Paylike.NET
                 }
                 else
                 {
-                    
+                    apiResponse.ErrorContent = jsonResponse;
                 }
+
+                apiResponse.ResponseCode = (int)httpResponse.StatusCode;
             }
 
             return apiResponse;

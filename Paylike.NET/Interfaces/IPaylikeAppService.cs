@@ -14,7 +14,7 @@ namespace Paylike.NET.Interfaces
     {
         ApiResponse<App> CreateApp(CreateAppRequest request);
         ApiResponse<GetCurrentAppResponse> GetCurrentApp();
-        ApiResponse<object> AddAppToMerchant(AddAppToMerchantRequest request);
+    
         void SetApiKey(string privateApiKey);
     }
 }
