@@ -3,6 +3,7 @@ using Paylike.NET.RequestModels.Apps;
 using Paylike.NET.RequestModels.Merchants;
 using Paylike.NET.ResponseModels;
 using Paylike.NET.ResponseModels.Apps;
+using Paylike.NET.ResponseModels.Merchants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,11 @@ namespace Paylike.NET.Interfaces
         ApiResponse<List<Merchant>> GetMerchants(GetMerchantsRequest request);
 
         ApiResponse<InviteUserToMerchantResponse> InviteUserToMerchant(InviteUserToMerchantRequest request);
+
+        ApiResponse<object> RevokeUserFromMerchant(RevokeUserFromMerchantRequest request);
+
+        ApiResponse<List<User>> GetMerchantUsers(GetMerchantUsersRequest request);
+
+        ApiResponse<List<App>> GetMerchantApps(GetMerchantAppsRequest request);
     }
 }

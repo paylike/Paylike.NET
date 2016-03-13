@@ -9,6 +9,7 @@ using Paylike.NET.RequestModels.Merchants;
 using Paylike.NET.ResponseModels;
 using Newtonsoft.Json.Linq;
 using Paylike.NET.ResponseModels.Apps;
+using Paylike.NET.ResponseModels.Merchants;
 
 namespace Paylike.NET
 {
@@ -48,9 +49,24 @@ namespace Paylike.NET
         {
             return SendApiRequest<UpdateMerchantRequest, object>(request);
         }
+
         public ApiResponse<InviteUserToMerchantResponse> InviteUserToMerchant(InviteUserToMerchantRequest request)
         {
             return SendApiRequest<InviteUserToMerchantRequest, InviteUserToMerchantResponse>(request);
+        }
+
+        public ApiResponse<object> RevokeUserFromMerchant(RevokeUserFromMerchantRequest request)
+        {
+            return SendApiRequest<RevokeUserFromMerchantRequest, object>(request);
+        }
+
+        public ApiResponse<List<User>> GetMerchantUsers(GetMerchantUsersRequest request)
+        {
+            return SendApiRequest<GetMerchantUsersRequest, List<User>>(request);
+        }
+        public ApiResponse<List<App>> GetMerchantApps(GetMerchantAppsRequest request)
+        {
+            return SendApiRequest<GetMerchantAppsRequest, List<App>>(request);
         }
 
         protected override string ProcessApiResponse(string json, string requestName)

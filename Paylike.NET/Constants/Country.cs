@@ -37,6 +37,6 @@ namespace Paylike.NET.Constants
         public const string Slovenia = "SI";
         public const string Spain = "ES";
         public const string Sweden = "SE";
-        public const string GB = "UnitedKingdom";
+        public const string UnitedKingdom = "GB";
     }
 }

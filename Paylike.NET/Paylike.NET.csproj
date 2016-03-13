@@ -51,6 +51,7 @@
     <Compile Include="Entities\Bank.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Merchant.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IPaylikeMerchantService.cs" />
     <Compile Include="Interfaces\IPaylikeAppService.cs" />
     <Compile Include="PaylikeAppService.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="RequestModels\Merchants\AddAppToMerchantRequest.cs" />
     <Compile Include="RequestModels\Apps\CreateAppRequest.cs" />
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
+    <Compile Include="RequestModels\Merchants\GetMerchantAppsRequest.cs" />
+    <Compile Include="RequestModels\Merchants\GetMerchantLinesRequest.cs" />
+    <Compile Include="RequestModels\Merchants\GetMerchantUsersRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantsRequest.cs" />
     <Compile Include="RequestModels\Merchants\InviteUserToMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\RevokeAppFromMerchantRequest.cs" />
@@ -69,8 +73,8 @@
     <Compile Include="RequestModels\PagedRequestBase.cs" />
     <Compile Include="RequestModels\RequestBase.cs" />
     <Compile Include="ResponseModels\ApiResponse.cs" />
-    <Compile Include="ResponseModels\Apps\FetchCurrentAppResponse.cs" />
-    <Compile Include="ResponseModels\Apps\InviteUserToMerchantResponse.cs" />
+    <Compile Include="ResponseModels\Apps\GetCurrentAppResponse.cs" />
+    <Compile Include="ResponseModels\Merchants\InviteUserToMerchantResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

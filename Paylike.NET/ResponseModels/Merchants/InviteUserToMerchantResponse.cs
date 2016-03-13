@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Paylike.NET.ResponseModels.Apps
+namespace Paylike.NET.ResponseModels.Merchants
 {
     public class InviteUserToMerchantResponse
     {
