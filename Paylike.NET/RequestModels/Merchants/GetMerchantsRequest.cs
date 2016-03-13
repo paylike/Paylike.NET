@@ -7,29 +7,30 @@ using System.Threading.Tasks;
 
 namespace Paylike.NET.RequestModels.Merchants
 {
-    public class GetMerchantRequest : RequestBase
+    public class GetMerchantsRequest: PagedRequestBase
     {
-        public GetMerchantRequest()
+        public GetMerchantsRequest()
         {
-            base.UriTemplate = "/merchants/{0}";
-            base.Name = "GetMerchant";
+            base.UriTemplate = "/identities/{0}/merchants";
+            base.Name = "GetMerchants";
             base.HttpMethod = System.Net.WebRequestMethods.Http.Get;
         }
 
-        private string merchantId;
+        private string appId;
 
         [JsonIgnore]
-        public string MerchanId
+        public string AppId
         {
             get
             {
-                return merchantId;
+                return appId;
             }
             set
             {
-                merchantId = value;
-                base.Uri = string.Format(base.UriTemplate, merchantId);
+                appId = value;
+                base.Uri = string.Format(base.UriTemplate, appId);
             }
         }
+
     }
 }

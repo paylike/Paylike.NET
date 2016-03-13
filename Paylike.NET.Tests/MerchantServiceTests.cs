@@ -62,7 +62,7 @@ namespace Paylike.NET.Tests
 
             Assert.IsNull(addResponse.Content);
             Assert.IsFalse(addResponse.IsError);
-            Assert.AreEqual(204, addResponse.ResponseCode);
+            Assert.AreEqual(201, addResponse.ResponseCode);
         }
 
         [TestMethod]
@@ -196,6 +196,86 @@ namespace Paylike.NET.Tests
         }
 
         [TestMethod]
+        public void GetMerchants_Success()
+        {
+            App createdApp = _appService.CreateApp(new CreateAppRequest()).Content;
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(createdApp.Key);
+
+            for(int i = 0; i < 5; i++)
+            {
+                merchantService.CreateMerchant(new CreateMerchantRequest()
+                {
+                    Name = "TestMerchant_" + DateTime.Now.Ticks.ToString(),
+                    Currency = Currency.EUR,
+                    Test = true,
+                    Email = "test@gmail.com",
+                    Website = "test.com",
+                    Descriptor = "descriptor",
+                    Company = new Company()
+                    {
+                        Country = Country.Austria,
+                        Number = "NUMBER123"
+                    },
+                    Bank = new Bank()
+                    {
+                        IBAN = "NL18ABNA0484869868"
+                    }
+                });
+            }
+
+            ApiResponse<List<Merchant>> merchantsResponse = merchantService.GetMerchants(new GetMerchantsRequest() {
+                AppId = createdApp.Id,
+                Limit = 3
+            });
+
+            Assert.AreEqual(3, merchantsResponse.Content.Count);
+
+            var beforeMerchants = merchantService.GetMerchants(new GetMerchantsRequest()
+            {
+                AppId = createdApp.Id,
+                Before = merchantsResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, beforeMerchants.Content.Count);
+
+            var afterMerchants = merchantService.GetMerchants(new GetMerchantsRequest()
+            {
+                AppId = createdApp.Id,
+                After = merchantsResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, beforeMerchants.Content.Count);
+
+            var firstMerchantsIds = merchantsResponse.Content.Select(m => m.Id);
+            var beforeMerchantsIds = beforeMerchants.Content.Select(m => m.Id);
+            var afterMerchantsIds = afterMerchants.Content.Select(m => m.Id);
+
+            var beforeIntersection = firstMerchantsIds.Intersect(beforeMerchantsIds);
+            var afterIntersection = firstMerchantsIds.Intersect(afterMerchantsIds);
+
+            Assert.AreEqual(0, beforeIntersection.Count());
+            Assert.AreEqual(2, afterIntersection.Count());
+        }
+
+        [TestMethod]
+        public void GetMerchants_WithoutPagination_Fails()
+        {
+            App createdApp = _appService.CreateApp(new CreateAppRequest()).Content;
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(createdApp.Key);
+
+            ApiResponse<List<Merchant>> merchantsResponse = merchantService.GetMerchants(new GetMerchantsRequest()
+            {
+                AppId = createdApp.Id
+            });
+
+            Assert.IsTrue(merchantsResponse.IsError);
+            Assert.IsNotNull(merchantsResponse.ErrorContent);
+            Assert.AreEqual(400, merchantsResponse.ResponseCode);
+        }
+
+        [TestMethod]
         public void UpdateMerchant_Success()
         {
             App createdApp = _appService.CreateApp(new CreateAppRequest()).Content;
@@ -233,6 +313,44 @@ namespace Paylike.NET.Tests
             Assert.AreEqual(gotMerchant.Name, "new_name");
             Assert.AreEqual(gotMerchant.Email, "new_email@test.com");
             Assert.AreEqual(gotMerchant.Descriptor, "newDesc");
+        }
+
+        [TestMethod]
+        [Ignore]
+        public void InviteUserToMerhant_Success()
+        {
+            App createdApp = _appService.CreateApp(new CreateAppRequest()).Content;
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(createdApp.Key);
+
+            string merchantName = "TestMerchant_" + DateTime.Now.Ticks.ToString();
+            Merchant createdMerchant = merchantService.CreateMerchant(new CreateMerchantRequest()
+            {
+                Name = merchantName,
+                Currency = Currency.EUR,
+                Test = true,
+                Email = "test@gmail.com",
+                Website = "test.com",
+                Descriptor = "descriptor",
+                Company = new Company()
+                {
+                    Country = Country.Austria,
+                    Number = "NUMBER123"
+                },
+                Bank = new Bank()
+                {
+                    IBAN = "NL18ABNA0484869868"
+                }
+            }).Content;
+
+            var inviteResult = merchantService.InviteUserToMerchant(new InviteUserToMerchantRequest()
+            {
+                MerchanId = createdMerchant.Id,
+                Email = "test@test.com"
+            });
+
+            Assert.IsNotNull(inviteResult.Content);
+            Assert.IsFalse(inviteResult.IsError);
+            Assert.AreEqual(201, inviteResult.ResponseCode);
         }
     }
 }

@@ -47,6 +47,9 @@ namespace Paylike.NET
                     }
                 case "GET":
                     {
+                        if (request is PagedRequestBase)
+                            request.Uri += (request as PagedRequestBase).GetPaginationQueryString();
+
                         httpResponse = _apiClient.GetAsync(request.Uri).Result;
                         break;
                     }

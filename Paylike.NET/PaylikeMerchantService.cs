@@ -8,6 +8,7 @@ using Paylike.NET.Entities;
 using Paylike.NET.RequestModels.Merchants;
 using Paylike.NET.ResponseModels;
 using Newtonsoft.Json.Linq;
+using Paylike.NET.ResponseModels.Apps;
 
 namespace Paylike.NET
 {
@@ -38,9 +39,18 @@ namespace Paylike.NET
             return SendApiRequest<GetMerchantRequest, Merchant>(request);
         }
 
+        public ApiResponse<List<Merchant>> GetMerchants(GetMerchantsRequest request)
+        {
+            return SendApiRequest<GetMerchantsRequest, List<Merchant>>(request);
+        }
+
         public ApiResponse<object> UpdateMerchant(UpdateMerchantRequest request)
         {
             return SendApiRequest<UpdateMerchantRequest, object>(request);
+        }
+        public ApiResponse<InviteUserToMerchantResponse> InviteUserToMerchant(InviteUserToMerchantRequest request)
+        {
+            return SendApiRequest<InviteUserToMerchantRequest, InviteUserToMerchantResponse>(request);
         }
 
         protected override string ProcessApiResponse(string json, string requestName)
@@ -48,12 +58,12 @@ namespace Paylike.NET
             string processedJson = json;
             switch(requestName)
             {
-                case "CreateMetchant":
+                case "CreateMerchant":
                     {
                         processedJson = JObject.Parse(json).SelectToken("merchant").ToString();
                         break;
                     }
-                case "GetMetchant":
+                case "GetMerchant":
                     {
                         processedJson = JObject.Parse(json).SelectToken("merchant").ToString();
                         break;
@@ -62,6 +72,5 @@ namespace Paylike.NET
 
             return processedJson;
         }
-
     }
 }

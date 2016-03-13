@@ -13,7 +13,7 @@ namespace Paylike.NET.RequestModels.Merchants
         public CreateMerchantRequest()
         {
             base.Uri = "/merchants";
-            base.Name = "CreateMetchant";
+            base.Name = "CreateMerchant";
             base.HttpMethod = System.Net.WebRequestMethods.Http.Post;
         }
 

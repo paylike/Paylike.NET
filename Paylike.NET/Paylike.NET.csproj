@@ -59,13 +59,18 @@
     <Compile Include="RequestModels\Merchants\AddAppToMerchantRequest.cs" />
     <Compile Include="RequestModels\Apps\CreateAppRequest.cs" />
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
+    <Compile Include="RequestModels\Merchants\GetMerchantsRequest.cs" />
+    <Compile Include="RequestModels\Merchants\InviteUserToMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\RevokeAppFromMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\CreateMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantRequest.cs" />
+    <Compile Include="RequestModels\Merchants\RevokeUserFromMerchantRequest.cs" />
     <Compile Include="RequestModels\Merchants\UpdateMerchantRequest.cs" />
+    <Compile Include="RequestModels\PagedRequestBase.cs" />
     <Compile Include="RequestModels\RequestBase.cs" />
     <Compile Include="ResponseModels\ApiResponse.cs" />
     <Compile Include="ResponseModels\Apps\FetchCurrentAppResponse.cs" />
+    <Compile Include="ResponseModels\Apps\InviteUserToMerchantResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
