@@ -4,6 +4,7 @@ using Paylike.NET.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -27,6 +28,8 @@ namespace Paylike.NET
             }
 
             _apiClient.DefaultRequestHeaders.Add("User-agent", string.Format("Paylike.NET {0}", typeof(BaseService).Assembly.GetName().Version.ToString()));
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
         }
 
         protected ApiResponse<ResponseType> SendApiRequest<RequestType, ResponseType>(RequestType request)

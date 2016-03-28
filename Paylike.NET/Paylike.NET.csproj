@@ -49,13 +49,19 @@
     <Compile Include="Constants\Currency.cs" />
     <Compile Include="Entities\App.cs" />
     <Compile Include="Entities\Bank.cs" />
+    <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\Fee.cs" />
     <Compile Include="Entities\Merchant.cs" />
+    <Compile Include="Entities\Trail.cs" />
+    <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IPaylikeMerchantService.cs" />
     <Compile Include="Interfaces\IPaylikeAppService.cs" />
+    <Compile Include="Interfaces\IPaylikeTransactionService.cs" />
     <Compile Include="PaylikeAppService.cs" />
     <Compile Include="PaylikeMerchantService.cs" />
+    <Compile Include="PaylikeTransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestModels\Merchants\AddAppToMerchantRequest.cs" />
     <Compile Include="RequestModels\Apps\CreateAppRequest.cs" />
@@ -72,9 +78,15 @@
     <Compile Include="RequestModels\Merchants\UpdateMerchantRequest.cs" />
     <Compile Include="RequestModels\PagedRequestBase.cs" />
     <Compile Include="RequestModels\RequestBase.cs" />
+    <Compile Include="RequestModels\Transactions\GetTransactionRequest.cs" />
+    <Compile Include="RequestModels\Transactions\VoidTransactionRequest.cs" />
+    <Compile Include="RequestModels\Transactions\RefundTransactionRequest.cs" />
+    <Compile Include="RequestModels\Transactions\CaptureTransactionRequest.cs" />
+    <Compile Include="RequestModels\Transactions\CreateTransactionRequest.cs" />
     <Compile Include="ResponseModels\ApiResponse.cs" />
     <Compile Include="ResponseModels\Apps\GetCurrentAppResponse.cs" />
     <Compile Include="ResponseModels\Merchants\InviteUserToMerchantResponse.cs" />
+    <Compile Include="ResponseModels\Transactions\CreateTransactionResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -57,6 +57,7 @@
     <Compile Include="AppServiceTests.cs" />
     <Compile Include="MerchantServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
