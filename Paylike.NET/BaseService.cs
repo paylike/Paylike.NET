@@ -80,6 +80,7 @@ namespace Paylike.NET
                 else
                 {
                     apiResponse.ErrorContent = jsonResponse;
+                    apiResponse.ErrorMessage = httpResponse.ReasonPhrase;
                 }
 
                 apiResponse.ResponseCode = (int)httpResponse.StatusCode;

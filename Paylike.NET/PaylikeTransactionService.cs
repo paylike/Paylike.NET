@@ -44,6 +44,10 @@ namespace Paylike.NET
         {
             return SendApiRequest<GetTransactionRequest, Transaction>(request);
         }
+        public ApiResponse<List<Transaction>> GetTransactions(GetTransactionsRequest request)
+        {
+            return SendApiRequest<GetTransactionsRequest, List<Transaction>>(request);
+        }
 
         protected override string ProcessApiResponse(string json, string requestName)
         {
@@ -63,5 +67,6 @@ namespace Paylike.NET
 
             return processedJson;
         }
+
     }
 }

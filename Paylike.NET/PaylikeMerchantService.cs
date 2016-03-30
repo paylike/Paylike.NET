@@ -69,6 +69,16 @@ namespace Paylike.NET
             return SendApiRequest<GetMerchantAppsRequest, List<App>>(request);
         }
 
+        public ApiResponse<List<Line>> GetMerchantLines(GetMerchantLinesRequest request)
+        {
+            return SendApiRequest<GetMerchantLinesRequest, List<Line>>(request);
+        }
+
+        public ApiResponse<Card> SaveCard(SaveCardRequest request)
+        {
+            return SendApiRequest<SaveCardRequest, Card>(request);
+        }
+
         protected override string ProcessApiResponse(string json, string requestName)
         {
             string processedJson = json;
@@ -82,6 +92,11 @@ namespace Paylike.NET
                 case "GetMerchant":
                     {
                         processedJson = JObject.Parse(json).SelectToken("merchant").ToString();
+                        break;
+                    }
+                case "SaveCard":
+                    {
+                        processedJson = JObject.Parse(json).SelectToken("card").ToString();
                         break;
                     }
             }

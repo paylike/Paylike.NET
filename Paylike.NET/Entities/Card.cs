@@ -23,5 +23,8 @@ namespace Paylike.NET.Entities
 
         [JsonProperty("scheme")]
         public string Scheme { get; set; }
+
+        [JsonProperty("deleted")]
+        public DateTime? Deleted { get; set; }
     }
 }

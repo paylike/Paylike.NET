@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Paylike.NET.Constants;
+using Paylike.NET.Entities;
 using Paylike.NET.Interfaces;
+using Paylike.NET.RequestModels.Merchants;
 using Paylike.NET.RequestModels.Transactions;
+using Paylike.NET.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +56,49 @@ namespace Paylike.NET.Tests
             Assert.IsFalse(getTransactionResult.IsError);
             Assert.AreEqual(200, getTransactionResult.ResponseCode);
             Assert.AreEqual(response.Content.Id, getTransactionResult.Content.Id);
+        }
+
+        [TestMethod]
+        public void GetTransactions_Success()
+        {
+            for(var i = 0; i < 5; i++)
+                transactionService.CreateTransaction(createTransactionRequest);
+
+            ApiResponse<List<Transaction>> transactionsResponse = transactionService.GetTransactions(new GetTransactionsRequest()
+            {
+                MerchantId = MerchantId,
+                Limit = 3
+            });
+
+            Assert.AreEqual(3, transactionsResponse.Content.Count);
+
+            var beforeTransactions = transactionService.GetTransactions(new GetTransactionsRequest()
+            {
+                MerchantId = MerchantId,
+                Before = transactionsResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, beforeTransactions.Content.Count);
+
+            var afterTransactions = transactionService.GetTransactions(new GetTransactionsRequest()
+            {
+                MerchantId = MerchantId,
+                After = transactionsResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, afterTransactions.Content.Count);
+
+            var firstTransactionIds = transactionsResponse.Content.Select(m => m.Id);
+            var beforeTransactionIds = beforeTransactions.Content.Select(m => m.Id);
+            var afterTransactionIds = afterTransactions.Content.Select(m => m.Id);
+
+            var beforeIntersection = firstTransactionIds.Intersect(beforeTransactionIds);
+            var afterIntersection = firstTransactionIds.Intersect(afterTransactionIds);
+
+            Assert.AreEqual(0, beforeIntersection.Count());
+            Assert.AreEqual(2, afterIntersection.Count());
         }
 
         [TestMethod]

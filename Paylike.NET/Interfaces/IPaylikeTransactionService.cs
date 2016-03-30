@@ -21,5 +21,7 @@ namespace Paylike.NET.Interfaces
         ApiResponse<Transaction> VoidTransaction(VoidTransactionRequest request);
 
         ApiResponse<Transaction> GetTransaction(GetTransactionRequest request);
+
+        ApiResponse<List<Transaction>> GetTransactions(GetTransactionsRequest request);
     }
 }

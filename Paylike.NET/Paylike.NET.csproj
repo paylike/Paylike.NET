@@ -52,6 +52,7 @@
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Fee.cs" />
+    <Compile Include="Entities\Line.cs" />
     <Compile Include="Entities\Merchant.cs" />
     <Compile Include="Entities\Trail.cs" />
     <Compile Include="Entities\Transaction.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantAppsRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantLinesRequest.cs" />
+    <Compile Include="RequestModels\Merchants\SaveCardRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantUsersRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantsRequest.cs" />
     <Compile Include="RequestModels\Merchants\InviteUserToMerchantRequest.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="RequestModels\PagedRequestBase.cs" />
     <Compile Include="RequestModels\RequestBase.cs" />
     <Compile Include="RequestModels\Transactions\GetTransactionRequest.cs" />
+    <Compile Include="RequestModels\Transactions\GetTransactionsRequest.cs" />
     <Compile Include="RequestModels\Transactions\VoidTransactionRequest.cs" />
     <Compile Include="RequestModels\Transactions\RefundTransactionRequest.cs" />
     <Compile Include="RequestModels\Transactions\CaptureTransactionRequest.cs" />

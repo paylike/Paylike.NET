@@ -18,6 +18,9 @@ namespace Paylike.NET.Tests
     {
         private IPaylikeAppService _appService;
         private CreateMerchantRequest _createMerchantRequest;
+        public string AppKey = "02a738b2-d0bf-43dc-b047-31b45cb86bbb";
+        public string MerchantId = "56dc7d44dec8ce670fbc3448";
+        public string TransactionId = "56f975ce0b692dac1a58c124";
 
         [TestInitialize]
         public void TestInitialize()
@@ -380,6 +383,59 @@ namespace Paylike.NET.Tests
 
             Assert.AreEqual(0, beforeIntersection.Count());
             Assert.AreEqual(2, afterIntersection.Count());
+        }
+
+        [TestMethod]
+        public void GetMerchantLines_Success()
+        {
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(AppKey);
+           
+            ApiResponse<List<Line>> linesResponse = merchantService.GetMerchantLines(new GetMerchantLinesRequest()
+            {
+                MerchantId = MerchantId,
+                Limit = 3
+            });
+            Assert.AreEqual(3, linesResponse.Content.Count);
+
+            var beforeLines = merchantService.GetMerchantLines(new GetMerchantLinesRequest()
+            {
+                MerchantId = MerchantId,
+                Before = linesResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, beforeLines.Content.Count);
+
+            var afterLines = merchantService.GetMerchantLines(new GetMerchantLinesRequest()
+            {
+                MerchantId = MerchantId,
+                After = linesResponse.Content[2].Id,
+                Limit = 2
+            });
+
+            Assert.AreEqual(2, afterLines.Content.Count);
+
+            var firstLinesIds = linesResponse.Content.Select(m => m.Id);
+            var beforeLinesIds = beforeLines.Content.Select(m => m.Id);
+            var afterAppsIds = afterLines.Content.Select(m => m.Id);
+
+            var beforeIntersection = firstLinesIds.Intersect(beforeLinesIds);
+            var afterIntersection = firstLinesIds.Intersect(afterAppsIds);
+
+            Assert.AreEqual(0, beforeIntersection.Count());
+            Assert.AreEqual(2, afterIntersection.Count());
+        }
+
+        [TestMethod]
+        public void SaveCard_Success()
+        {
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(AppKey);
+            var cardResponse = merchantService.SaveCard(new SaveCardRequest() { MerchanId = MerchantId, TransactionId = TransactionId });
+
+            Assert.IsNotNull(cardResponse.Content.Id);
+            Assert.IsNotNull(cardResponse.Content);
+            Assert.IsFalse(cardResponse.IsError);
+            Assert.AreEqual(201, cardResponse.ResponseCode);
         }
     }
 }
