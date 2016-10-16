@@ -19,7 +19,7 @@ namespace Paylike.NET.RequestModels.Merchants
         private string merchantId;
 
         [JsonIgnore]
-        public string MerchanId
+        public string MerchantId
         {
             get
             {

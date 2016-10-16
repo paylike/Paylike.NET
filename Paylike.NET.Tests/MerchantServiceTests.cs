@@ -56,7 +56,7 @@ namespace Paylike.NET.Tests
 
             AddAppToMerchantRequest addRequest = new AddAppToMerchantRequest()
             {
-                MerchanId = merchant.Id,
+                MerchantId = merchant.Id,
                 AppId = createdApp.Id
             };
 
@@ -78,14 +78,14 @@ namespace Paylike.NET.Tests
 
             AddAppToMerchantRequest addRequest = new AddAppToMerchantRequest()
             {
-                MerchanId = merchant.Id,
+                MerchantId = merchant.Id,
                 AppId = createdApp.Id
             };
 
             merchantService.AddAppToMerchant(addRequest);
             var revokeResponse = merchantService.RevokeAppFromMerchant(new RevokeAppFromMerchantRequest()
             {
-                MerchanId = merchant.Id,
+                MerchantId = merchant.Id,
                 AppId = createdApp.Id
             });
 
@@ -130,7 +130,7 @@ namespace Paylike.NET.Tests
 
             Merchant createdMerchant = merchantService.CreateMerchant(_createMerchantRequest).Content;
 
-            Merchant gotMerchant = merchantService.GetMerchant(new GetMerchantRequest() { MerchanId = createdMerchant.Id }).Content;
+            Merchant gotMerchant = merchantService.GetMerchant(new GetMerchantRequest() { MerchantId = createdMerchant.Id }).Content;
 
 
             Assert.AreEqual(gotMerchant.Name, createdMerchant.Name);
@@ -216,13 +216,13 @@ namespace Paylike.NET.Tests
             Merchant createdMerchant = merchantService.CreateMerchant(_createMerchantRequest).Content;
 
             merchantService.UpdateMerchant(new UpdateMerchantRequest() {
-                MerchanId = createdMerchant.Id,
+                MerchantId = createdMerchant.Id,
                 Email = "new_email@test.com",
                 Name = "new_name",
                 Descriptor = "newDesc"
             });
 
-            Merchant gotMerchant = merchantService.GetMerchant(new GetMerchantRequest() { MerchanId = createdMerchant.Id }).Content;
+            Merchant gotMerchant = merchantService.GetMerchant(new GetMerchantRequest() { MerchantId = createdMerchant.Id }).Content;
 
             Assert.AreEqual(gotMerchant.Name, "new_name");
             Assert.AreEqual(gotMerchant.Email, "new_email@test.com");
@@ -238,7 +238,7 @@ namespace Paylike.NET.Tests
 
             var inviteResult = merchantService.InviteUserToMerchant(new InviteUserToMerchantRequest()
             {
-                MerchanId = createdMerchant.Id,
+                MerchantId = createdMerchant.Id,
                 Email = "test@example.com"
             });
 
@@ -256,7 +256,7 @@ namespace Paylike.NET.Tests
 
             merchantService.InviteUserToMerchant(new InviteUserToMerchantRequest()
             {
-                MerchanId = createdMerchant.Id,
+                MerchantId = createdMerchant.Id,
                 Email = "test@example.com"
             });
 
@@ -267,7 +267,7 @@ namespace Paylike.NET.Tests
             });
 
             var revokeResponse = merchantService.RevokeUserFromMerchant(new RevokeUserFromMerchantRequest() {
-                MerchanId = createdMerchant.Id,
+                MerchantId = createdMerchant.Id,
                 UserId = merchantUsers.Content[0].Id
             });
 
@@ -287,7 +287,7 @@ namespace Paylike.NET.Tests
             {
                 merchantService.InviteUserToMerchant(new InviteUserToMerchantRequest()
                 {
-                    MerchanId = createdMerchant.Id,
+                    MerchantId = createdMerchant.Id,
                     Email = "test" + i.ToString() + "@example.com"
                 });
             }
@@ -343,7 +343,7 @@ namespace Paylike.NET.Tests
                 createdApp = _appService.CreateApp(new CreateAppRequest()).Content;
                 merchantService.AddAppToMerchant(new AddAppToMerchantRequest()
                 {
-                    MerchanId = merchant.Id,
+                    MerchantId = merchant.Id,
                     AppId = createdApp.Id
                 });
             }
@@ -430,7 +430,7 @@ namespace Paylike.NET.Tests
         public void SaveCard_Success()
         {
             IPaylikeMerchantService merchantService = new PaylikeMerchantService(AppKey);
-            var cardResponse = merchantService.SaveCard(new SaveCardRequest() { MerchanId = MerchantId, TransactionId = TransactionId });
+            var cardResponse = merchantService.SaveCard(new SaveCardRequest() { MerchantId = MerchantId, TransactionId = TransactionId });
 
             Assert.IsNotNull(cardResponse.Content.Id);
             Assert.IsNotNull(cardResponse.Content);
