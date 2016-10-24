@@ -10,6 +10,9 @@ namespace Paylike.NET.Entities
     public class Card
     {
         [JsonProperty("created")]
+        public string Created { get; set; }
+
+        [JsonProperty("id")]
         public string Id { get; set; }
 
         [JsonProperty("bin")]
