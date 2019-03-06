@@ -79,6 +79,11 @@ namespace Paylike.NET
             return SendApiRequest<SaveCardRequest, Card>(request);
         }
 
+        public ApiResponse<Card> FetchCard(FetchCardRequest request)
+        {
+            return SendApiRequest<FetchCardRequest, Card>(request);
+        }
+
         protected override string ProcessApiResponse(string json, string requestName)
         {
             string processedJson = json;
@@ -95,7 +100,7 @@ namespace Paylike.NET
                         break;
                     }
                 case "SaveCard":
-                    {
+                case "FetchCard": {
                         processedJson = JObject.Parse(json).SelectToken("card").ToString();
                         break;
                     }

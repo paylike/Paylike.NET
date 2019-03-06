@@ -21,6 +21,7 @@ namespace Paylike.NET.Tests
         public string AppKey = "02a738b2-d0bf-43dc-b047-31b45cb86bbb";
         public string MerchantId = "56dc7d44dec8ce670fbc3448";
         public string TransactionId = "56f975ce0b692dac1a58c124";
+        public string CardId = "56fc165d32ea1415191fc7b8";
 
         [TestInitialize]
         public void TestInitialize()
@@ -436,6 +437,18 @@ namespace Paylike.NET.Tests
             Assert.IsNotNull(cardResponse.Content);
             Assert.IsFalse(cardResponse.IsError);
             Assert.AreEqual(201, cardResponse.ResponseCode);
+        }
+
+        [TestMethod]
+        public void FetchCard_Success()
+        {
+            IPaylikeMerchantService merchantService = new PaylikeMerchantService(AppKey);
+            var cardResponse = merchantService.FetchCard(new FetchCardRequest() { CardID = CardId });
+
+            Assert.IsNotNull(cardResponse.Content.Id);
+            Assert.IsNotNull(cardResponse.Content);
+            Assert.IsFalse(cardResponse.IsError);
+            Assert.AreEqual(200, cardResponse.ResponseCode);
         }
     }
 }

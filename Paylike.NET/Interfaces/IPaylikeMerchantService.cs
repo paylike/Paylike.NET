@@ -37,5 +37,7 @@ namespace Paylike.NET.Interfaces
         ApiResponse<List<Line>> GetMerchantLines(GetMerchantLinesRequest request);
 
         ApiResponse<Card> SaveCard(SaveCardRequest request);
+
+        ApiResponse<Card> FetchCard(FetchCardRequest request);
     }
 }

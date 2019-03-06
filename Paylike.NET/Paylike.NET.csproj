@@ -69,6 +69,7 @@
     <Compile Include="RequestModels\Apps\GetCurrentAppRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantAppsRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantLinesRequest.cs" />
+    <Compile Include="RequestModels\Merchants\FetchCardRequest.cs" />
     <Compile Include="RequestModels\Merchants\SaveCardRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantUsersRequest.cs" />
     <Compile Include="RequestModels\Merchants\GetMerchantsRequest.cs" />
